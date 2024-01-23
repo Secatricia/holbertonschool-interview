@@ -1,14 +1,13 @@
 #include "sandpiles.h"
-#include <stdio.h>
 
 /**
- * sandpiles_sum - Calcule la somme de deux tas de sable.
- * @grid1: Premier tas de sable.
- * @grid2: Deuxième tas de sable.
+ * sandpiles_sum - Computes the sum of two sandpiles.
+ * @grid1: First sandpile.
+ * @grid2: Second sandpile.
  */
 void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 {
-    // Ajoute les valeurs correspondantes de chaque cellule
+    // Add corresponding values of each cell
     for (int i = 0; i < 3; i++)
     {
         for (int j = 0; j < 3; j++)
@@ -17,7 +16,7 @@ void sandpiles_sum(int grid1[3][3], int grid2[3][3])
         }
     }
 
-    // Effectue l'opération de basculement jusqu'à ce que le tas soit stable
+    // Perform toppling operation until the pile is stable
     while (!is_stable(grid1))
     {
         printf("=\n");
@@ -26,7 +25,7 @@ void sandpiles_sum(int grid1[3][3], int grid2[3][3])
     }
 }
 
-// Fonction auxiliaire pour vérifier si le tas de sable est stable
+// Auxiliary function to check if the sandpile is stable
 int is_stable(int grid[3][3])
 {
     for (int i = 0; i < 3; i++)
@@ -34,14 +33,14 @@ int is_stable(int grid[3][3])
         for (int j = 0; j < 3; j++)
         {
             if (grid[i][j] > 3)
-                return 0; // Non stable
+                return 0; // Not stable
         }
     }
 
     return 1; // Stable
 }
 
-// Fonction auxiliaire pour effectuer l'opération de basculement
+// Auxiliary function to perform the toppling operation
 void topple(int grid[3][3])
 {
     int topple_grid[3][3] = {{0}};
@@ -52,7 +51,7 @@ void topple(int grid[3][3])
         {
             if (grid[i][j] > 3)
             {
-                topple_grid[i][j] -= 4; // Distribue 4 grains aux voisins
+                topple_grid[i][j] -= 4; // Distribute 4 grains to neighbors
                 if (i > 0)
                     topple_grid[i - 1][j]++;
                 if (i < 2)
@@ -65,7 +64,7 @@ void topple(int grid[3][3])
         }
     }
 
-    // Met à jour la grille d'origine avec les résultats du basculement
+    // Update the original grid with the results of toppling
     for (int i = 0; i < 3; i++)
     {
         for (int j = 0; j < 3; j++)
@@ -75,7 +74,7 @@ void topple(int grid[3][3])
     }
 }
 
-// Fonction pour afficher la grille
+// Function to print the grid
 void print_grid(int grid[3][3])
 {
     for (int i = 0; i < 3; i++)
