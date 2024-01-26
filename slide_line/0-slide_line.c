@@ -1,4 +1,5 @@
 #include "slide_line.h"
+#include <stddef.h>
 
 /**
  * merge_left - Merge the elements to the left
